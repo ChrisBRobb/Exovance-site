@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand tokens (CSS vars for convenience) */
+:root{
+  --indigo:#2B2F77;
+  --teal:#00C6AE;
+  --sky:#57A0FF;
+  --graphite:#4A4A4A;
+  --sand:#E8E5DB;
+}
+
+body{ @apply text-gray-900 bg-white; }

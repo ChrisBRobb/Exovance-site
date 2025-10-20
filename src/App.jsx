@@ -1,0 +1,267 @@
+import React, { useState } from 'react'
+import { ArrowRight, CheckCircle2, Lightbulb, Network, Gauge, Building2, Mail, Phone } from 'lucide-react'
+
+const brand = {
+  indigo: '#2B2F77',
+  teal: '#00C6AE',
+  sky: '#57A0FF',
+  graphite: '#4A4A4A',
+  sand: '#E8E5DB',
+}
+
+const Section = ({ id, children, className = '' }) => (
+  <section id={id} className={`w-full ${className}`}>{children}</section>
+)
+
+const Pill = ({ children }) => (
+  <span className='inline-block rounded-full px-3 py-1 text-xs font-medium' style={{ background: brand.sand, color: brand.graphite }}>
+    {children}
+  </span>
+)
+
+const CTA = ({ href = '#contact', children }) => (
+  <a href={href} className='inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm transition hover:shadow-md' style={{ background: brand.teal, color: 'white' }}>
+    {children} <ArrowRight size={18} />
+  </a>
+)
+
+export default function App(){
+  const [sent, setSent] = useState(false)
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    // Simple demo submission using Formspree. Replace YOUR_FORM_ID with your real ID.
+    const form = e.currentTarget
+    const data = new FormData(form)
+    const endpoint = 'https://formspree.io/f/YOUR_FORM_ID'
+    try{
+      const res = await fetch(endpoint, { method: 'POST', headers: { 'Accept': 'application/json' }, body: data })
+      if(res.ok){ setSent(true); form.reset() }
+      else alert('Submission failed. Configure Formspree or connect your email service.')
+    }catch(err){
+      alert('Submission error. Configure Formspree or connect your email service.')
+    }
+  }
+
+  return (
+    <div className='min-h-screen w-full text-gray-900' style={{ background: 'white' }}>
+      <header className='sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70'>
+        <div className='mx-auto flex max-w-6xl items-center justify-between px-4 py-4'>
+          <a href='#top' className='flex items-center gap-2'>
+            <div className='text-xl font-extrabold tracking-tight' style={{ color: brand.indigo }}>
+              EXO<span style={{ color: brand.teal }}>VANCE</span>
+            </div>
+            <div className='sr-only'>Exovance — Beyond Transformation</div>
+          </a>
+          <nav className='hidden gap-6 md:flex' aria-label='Primary'>
+            <a href='#services' className='text-sm font-medium hover:underline' style={{ color: brand.graphite }}>Services</a>
+            <a href='#approach' className='text-sm font-medium hover:underline' style={{ color: brand.graphite }}>Approach</a>
+            <a href='#work' className='text-sm font-medium hover:underline' style={{ color: brand.graphite }}>Case studies</a>
+            <a href='#about' className='text-sm font-medium hover:underline' style={{ color: brand.graphite }}>About</a>
+          </nav>
+          <div className='hidden md:block'>
+            <CTA>Start a conversation</CTA>
+          </div>
+        </div>
+      </header>
+
+      <Section id='top' className='relative overflow-hidden'>
+        <div className='pointer-events-none absolute inset-0 -z-10' aria-hidden>
+          <div className='absolute inset-0' style={{
+            background: `radial-gradient(1200px 600px at 20% -10%, ${brand.sky}15, transparent), radial-gradient(1200px 600px at 80% 10%, ${brand.teal}15, transparent)`,
+          }} />
+        </div>
+        <div className='mx-auto max-w-6xl px-4 py-20 md:py-28'>
+          <Pill>Technology consulting</Pill>
+          <h1 className='mt-6 text-4xl font-extrabold leading-tight md:text-6xl' style={{ color: brand.indigo }}>
+            Beyond Transformation
+          </h1>
+          <p className='mt-4 max-w-2xl text-lg text-gray-600'>
+            We design and deliver technology strategies that create lasting value. Not just transformation — evolution. Exovance unites strategy, platforms, and people so your organisation can keep moving forward.
+          </p>
+          <div className='mt-8 flex flex-wrap items-center gap-3'>
+            <CTA>Book a discovery call</CTA>
+            <a href='#services' className='rounded-2xl px-5 py-3 text-sm font-semibold' style={{ color: brand.indigo, background: brand.sand }}>Explore services</a>
+          </div>
+          <div className='mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+            {[
+              { icon: Lightbulb, title: 'Strategy', text: 'Target architectures, roadmaps, investment cases.' },
+              { icon: Network, title: 'Platforms', text: 'Cloud, integration, data & AI foundations.' },
+              { icon: Gauge, title: 'Delivery', text: 'Operating models, governance, value realisation.' },
+              { icon: Building2, title: 'Adoption', text: 'Human change, capability, continuous evolution.' },
+            ].map((f, i) => (
+              <div key={i} className='rounded-2xl border p-5 shadow-sm'>
+                <f.icon className='mb-3' style={{ color: brand.teal }} />
+                <div className='text-base font-semibold' style={{ color: brand.indigo }}>{f.title}</div>
+                <p className='mt-1 text-sm text-gray-600'>{f.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section id='services' className='border-y bg-white'>
+        <div className='mx-auto max-w-6xl px-4 py-16 md:py-20'>
+          <h2 className='text-3xl font-bold md:text-4xl' style={{ color: brand.indigo }}>Services</h2>
+          <p className='mt-3 max-w-3xl text-gray-600'>Advisory that connects vision to value — from boardroom strategy to platform execution and human-centred adoption.</p>
+
+          <div className='mt-10 grid gap-6 lg:grid-cols-3'>
+            {[
+              { title: 'Technology Strategy & Architecture', bullets: ['Digital strategy & investment cases','Target state architecture & roadmaps','Platform selection & RFPs'] },
+              { title: 'Data, AI & Platforms', bullets: ['Data strategy & governance','AI readiness & pilot programmes','Cloud, integration & API ecosystems'] },
+              { title: 'Delivery, Operating Model & Change', bullets: ['Portfolio setup & PMO','Risk, security & resilience uplift','Change, capability & adoption'] },
+            ].map((card, idx) => (
+              <div key={idx} className='rounded-2xl border p-6 shadow-sm'>
+                <div className='text-lg font-semibold' style={{ color: brand.indigo }}>{card.title}</div>
+                <ul className='mt-4 space-y-2'>
+                  {card.bullets.map((b, i) => (
+                    <li key={i} className='flex items-start gap-2 text-sm text-gray-700'>
+                      <CheckCircle2 size={18} style={{ color: brand.teal }} />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section id='approach' className='relative overflow-hidden' aria-labelledby='approach-heading'>
+        <div className='absolute inset-0 -z-10' style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 55%, white 55%)` }} aria-hidden />
+        <div className='mx-auto max-w-6xl px-4 py-16 md:py-24'>
+          <h2 id='approach-heading' className='text-3xl font-bold text-white md:text-4xl'>Our approach</h2>
+          <p className='mt-3 max-w-3xl text-white/80'>Simple, outcome-driven and human. We co-design the strategy, engineer the foundations, and embed capability so your teams can keep evolving — beyond transformation.</p>
+          <div className='mt-10 grid gap-6 md:grid-cols-3'>
+            {[
+              { n: '01', title: 'Align', text: 'Frame value, define the north star, align leaders across business & tech.' },
+              { n: '02', title: 'Architect', text: 'Design target state, prioritise the roadmap, de-risk with patterns & guardrails.' },
+              { n: '03', title: 'Accelerate', text: 'Stand up delivery, uplift capability, measure value and iterate.' },
+            ].map((s, i) => (
+              <div key={i} className='rounded-2xl bg-white/10 p-6 backdrop-blur'>
+                <div className='text-sm font-mono tracking-widest text-white/70'>{s.n}</div>
+                <div className='mt-2 text-lg font-semibold text-white'>{s.title}</div>
+                <p className='mt-2 text-sm text-white/80'>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section id='work' className='bg-white'>
+        <div className='mx-auto max-w-6xl px-4 py-16 md:py-20'>
+          <h2 className='text-3xl font-bold md:text-4xl' style={{ color: brand.indigo }}>Selected work</h2>
+          <p className='mt-3 max-w-3xl text-gray-600'>Representative outcomes drawn from prior engagements. Replace with detailed case studies when ready.</p>
+          <div className='mt-8 grid gap-6 md:grid-cols-2'>
+            {[
+              { title: 'Core platform modernisation for an NZ insurer', bullets: ['Target architecture & roadmap across data, integration, and CRM','Established value tracking and governance guardrails','Reduced time-to-market by 35% in 12 months'] },
+              { title: 'AI-readiness and data governance uplift', bullets: ['Enterprise data strategy & operating model','Privacy, risk & security controls embedded','Pilot AI use-cases with measurable ROI'] },
+            ].map((cs, i) => (
+              <article key={i} className='rounded-2xl border p-6 shadow-sm'>
+                <h3 className='text-lg font-semibold' style={{ color: brand.indigo }}>{cs.title}</h3>
+                <ul className='mt-3 space-y-2'>
+                  {cs.bullets.map((b, idx) => (
+                    <li key={idx} className='flex items-start gap-2 text-sm text-gray-700'>
+                      <CheckCircle2 size={18} style={{ color: brand.teal }} />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section id='about' className='bg-[color:var(--sand)]' style={{ ['--sand']: brand.sand }}>
+        <div className='mx-auto max-w-6xl px-4 py-16 md:py-20'>
+          <h2 className='text-3xl font-bold md:text-4xl' style={{ color: brand.indigo }}>About Exovance</h2>
+          <div className='mt-6 grid gap-10 md:grid-cols-2'>
+            <div>
+              <p className='text-gray-700'>Exovance is a boutique technology consulting partner headquartered in Aotearoa New Zealand. We help organisations align strategy and platforms with the people who use them — so change sticks and value compounds. Our model blends executive advisory with hands-on architecture and delivery enablement.</p>
+              <ul className='mt-6 space-y-2 text-gray-700'>
+                {['Financial services, healthcare, public sector expertise','$100m+ portfolio experience; pragmatic governance','Architects, product leaders, data & change specialists'].map((t, i) => (
+                  <li key={i} className='flex items-start gap-2 text-sm'><CheckCircle2 size={18} style={{ color: brand.teal }} /><span>{t}</span></li>
+                ))}
+              </ul>
+            </div>
+            <div className='rounded-2xl border p-6 shadow-sm'>
+              <div className='text-lg font-semibold' style={{ color: brand.indigo }}>Highlights</div>
+              <dl className='mt-4 grid grid-cols-2 gap-6 text-sm text-gray-700'>
+                <div>
+                  <dt className='font-medium'>Time-to-value</dt>
+                  <dd>Accelerators, patterns, and guardrails for faster delivery.</dd>
+                </div>
+                <div>
+                  <dt className='font-medium'>Human-centred</dt>
+                  <dd>Change and capability embedded in every engagement.</dd>
+                </div>
+                <div>
+                  <dt className='font-medium'>Measured outcomes</dt>
+                  <dd>Value tracking and benefits realisation baked in.</dd>
+                </div>
+                <div>
+                  <dt className='font-medium'>Trusted partners</dt>
+                  <dd>We work alongside your teams and vendors — transparently.</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section id='contact' className='relative overflow-hidden'>
+        <div className='absolute inset-0 -z-10' style={{
+          background: `linear-gradient(135deg, ${brand.indigo} 0%, ${brand.indigo} 50%, ${brand.sky} 100%)`,
+        }} aria-hidden />
+        <div className='mx-auto max-w-6xl px-4 py-16 md:py-24'>
+          <div className='grid items-center gap-8 md:grid-cols-2'>
+            <div>
+              <h2 className='text-3xl font-bold text-white md:text-4xl'>Start a conversation</h2>
+              <p className='mt-3 max-w-xl text-white/80'>Tell us about your goals and constraints. We’ll respond with a practical next step and a lightweight plan to explore value, risks, and options.</p>
+              <div className='mt-6 flex flex-col gap-2 text-white/90'>
+                <div className='flex items-center gap-2'><Mail size={18} /> <a className='underline' href='mailto:hello@exovance.co.nz'>hello@exovance.co.nz</a></div>
+                <div className='flex items-center gap-2'><Phone size={18} /> <a className='underline' href='tel:+64000000000'>+64 00 000 0000</a></div>
+              </div>
+            </div>
+
+            <form className='rounded-2xl bg-white p-6 shadow-xl' onSubmit={onSubmit}>
+              {sent ? (
+                <div className='rounded-xl border border-green-200 bg-green-50 p-3 text-sm text-green-800'>Thanks — we\'ll be in touch shortly.</div>
+              ) : (
+                <>
+                  <label className='block text-sm font-medium text-gray-700'>Name
+                    <input name='name' className='mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring' placeholder='Your name' />
+                  </label>
+                  <label className='mt-4 block text-sm font-medium text-gray-700'>Email
+                    <input name='email' type='email' className='mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring' placeholder='you@company.com' />
+                  </label>
+                  <label className='mt-4 block text-sm font-medium text-gray-700'>Message
+                    <textarea name='message' className='mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring' rows={4} placeholder='What challenge are you solving?' />
+                  </label>
+                  <button type='submit' className='mt-5 w-full rounded-2xl px-5 py-3 font-semibold text-white' style={{ background: brand.teal }}>Send message</button>
+                  <p className='mt-2 text-center text-xs text-gray-500'>Connected via Formspree — set your form ID in src/App.jsx.</p>
+                </>
+              )}
+            </form>
+          </div>
+        </div>
+      </Section>
+
+      <footer className='border-t'>
+        <div className='mx-auto max-w-6xl px-4 py-10'>
+          <div className='flex flex-col items-start justify-between gap-6 md:flex-row md:items-center'>
+            <div className='text-lg font-extrabold' style={{ color: brand.indigo }}>EXO<span style={{ color: brand.teal }}>VANCE</span></div>
+            <div className='text-sm text-gray-600'>© {new Date().getFullYear()} Exovance Ltd. All rights reserved.</div>
+            <div className='flex items-center gap-4 text-sm'>
+              <a href='#services' className='hover:underline'>Services</a>
+              <a href='#approach' className='hover:underline'>Approach</a>
+              <a href='#work' className='hover:underline'>Work</a>
+              <a href='#about' className='hover:underline'>About</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
