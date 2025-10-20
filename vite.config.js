@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  // must match your repo name EXACTLY (case-sensitive)
-  base: '/Exovance-site/',
+  // Using a custom domain: serve from root
+  base: '/',            // or just delete this line entirely (default is '/')
 })
