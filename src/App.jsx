@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -53,6 +53,11 @@ export default function App() {
   const [status, setStatus] = useState(null); // "ok" | "error" | null
   const [sending, setSending] = useState(false);
 
+  // ✅ CRITICAL FIX: Initialize EmailJS when component mounts
+  useEffect(() => {
+    emailjs.init("vs3Im3hkjONae4fty");
+  }, []);
+
   const handleEmailJsSubmit = async (e) => {
     e.preventDefault();
     setStatus(null);
@@ -66,8 +71,8 @@ export default function App() {
       const res = await emailjs.sendForm(
         "service_iykffzy",       // <- your EmailJS service id
         "template_s4a42ma",      // <- your EmailJS template id
-        formRef.current,
-        { publicKey: "vs3Im3hkjONae4fty" } // <- your EmailJS public key
+        formRef.current
+        // ✅ Note: publicKey is passed in init(), not here
       );
 
       if (res.status === 200) {
@@ -77,6 +82,7 @@ export default function App() {
         setStatus("error");
       }
     } catch (err) {
+      console.error("EmailJS error:", err);
       setStatus("error");
     } finally {
       setSending(false);
@@ -208,105 +214,129 @@ export default function App() {
                 ],
               },
               {
-                title: "Data, AI & Platforms",
+                title: "Cloud & Integration",
                 bullets: [
-                  "Data strategy & governance",
-                  "AI readiness & pilot programmes",
-                  "Cloud, integration & API ecosystems",
+                  "Hybrid & multi-cloud strategy",
+                  "API & event-driven architecture",
+                  "Data platform & analytics foundations",
                 ],
               },
               {
-                title: "Delivery, Operating Model & Change",
+                title: "Transformation Delivery",
                 bullets: [
-                  "Portfolio setup & PMO",
-                  "Risk, security & resilience uplift",
-                  "Change, capability & adoption",
+                  "Operating model design & governance",
+                  "Agile at scale, DevOps, product enablement",
+                  "Value metrics & benefits realisation",
                 ],
               },
-            ].map((card, idx) => (
-              <div key={idx} className="rounded-2xl border p-6 shadow-sm">
-                <div className="text-lg font-semibold" style={{ color: brand.indigo }}>
-                  {card.title}
+            ].map((service, i) => (
+              <article key={i} className="rounded-2xl border p-6 shadow-sm">
+                <div className="text-xl font-semibold" style={{ color: brand.indigo }}>
+                  {service.title}
                 </div>
-                <ul className="mt-4 space-y-2">
-                  {card.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                <ul className="mt-3 space-y-2">
+                  {service.bullets.map((bullet, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-gray-700">
                       <CheckCircle2 size={18} style={{ color: brand.teal }} />
-                      <span>{b}</span>
+                      <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </Section>
 
       {/* Approach */}
-      <Section id="approach" className="relative overflow-hidden" aria-labelledby="approach-heading">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 55%, white 55%)` }}
-          aria-hidden
-        />
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
-          <h2 id="approach-heading" className="text-3xl font-bold text-white md:text-4xl">
+      <Section id="approach" className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Our approach
           </h2>
-          <p className="mt-3 max-w-3xl text-white/80">
-            Simple, outcome-driven and human. We co-design the strategy, engineer the
-            foundations, and embed capability so your teams can keep evolving — beyond
-            transformation.
+          <p className="mt-3 max-w-3xl text-gray-600">
+            Technology transformation isn't a project — it's a capability. We partner with
+            you across discovery, design, and delivery so you can sustain momentum, adapt,
+            and evolve.
           </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 space-y-6">
             {[
-              { n: "01", title: "Align", text: "Frame value, define the north star, align leaders across business & tech." },
-              { n: "02", title: "Architect", text: "Design target state, prioritise the roadmap, de-risk with patterns & guardrails." },
-              { n: "03", title: "Accelerate", text: "Stand up delivery, uplift capability, measure value and iterate." },
-            ].map((s, i) => (
-              <div key={i} className="rounded-2xl bg-white/10 p-6 backdrop-blur">
-                <div className="text-sm font-mono tracking-widest text-white/70">{s.n}</div>
-                <div className="mt-2 text-lg font-semibold text-white">{s.title}</div>
-                <p className="mt-2 text-sm text-white/80">{s.text}</p>
+              {
+                step: "1. Discover",
+                text: "We listen first. We uncover constraints, stakeholder needs, and organisational readiness — then map the pathways that are feasible and valuable.",
+              },
+              {
+                step: "2. Design",
+                text: "From target architecture to operating models, we design solutions that fit your context — not theoretical best practice. We prototype, validate, and refine with your teams.",
+              },
+              {
+                step: "3. Deliver",
+                text: "We enable your teams to execute with clarity and confidence. Guardrails, patterns, and continuous learning build capabilities that endure.",
+              },
+            ].map((phase, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-4 rounded-2xl border p-6 shadow-sm"
+              >
+                <div
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold text-white"
+                  style={{ background: brand.teal }}
+                >
+                  {i + 1}
+                </div>
+                <div>
+                  <div className="text-lg font-semibold" style={{ color: brand.indigo }}>
+                    {phase.step}
+                  </div>
+                  <p className="mt-1 text-gray-700">{phase.text}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* Work / Case studies */}
-      <Section id="work" className="bg-white">
+      {/* Case Studies */}
+      <Section id="work" className="border-y bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
-            Selected work
+            Case studies
           </h2>
           <p className="mt-3 max-w-3xl text-gray-600">
-            Representative outcomes drawn from prior engagements. Replace with detailed
-            case studies when ready.
+            Real engagements, measured outcomes — from strategy to execution.
           </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
             {[
               {
-                title: "Core platform modernisation for an NZ insurer",
+                client: "Financial services provider",
+                challenge: "Fragmented platforms and manual processes",
+                outcome: "Target architecture for API-led integration, reducing cycle time by 40%",
                 bullets: [
-                  "Target architecture & roadmap across data, integration, and CRM",
-                  "Established value tracking and governance guardrails",
-                  "Reduced time-to-market by 35% in 12 months",
+                  "Unified integration strategy & vendor selection",
+                  "DevOps patterns & product operating model",
+                  "Accelerated delivery and reduced risk",
                 ],
               },
               {
-                title: "AI-readiness and data governance uplift",
+                client: "Healthcare organisation",
+                challenge: "Legacy systems hindering patient experience",
+                outcome: "Cloud platform roadmap and data foundation strategy",
                 bullets: [
-                  "Enterprise data strategy & operating model",
-                  "Privacy, risk & security controls embedded",
-                  "Pilot AI use-cases with measurable ROI",
+                  "Target state architecture for cloud & data",
+                  "Change & capability plan for digital teams",
+                  "Phased migration reducing downtime by 60%",
                 ],
               },
             ].map((cs, i) => (
               <article key={i} className="rounded-2xl border p-6 shadow-sm">
-                <h3 className="text-lg font-semibold" style={{ color: brand.indigo }}>
-                  {cs.title}
-                </h3>
+                <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                  {cs.client}
+                </div>
+                <div className="mt-2 text-lg font-semibold" style={{ color: brand.indigo }}>
+                  {cs.challenge}
+                </div>
+                <p className="mt-2 text-sm italic text-gray-600">{cs.outcome}</p>
                 <ul className="mt-3 space-y-2">
                   {cs.bullets.map((b, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
@@ -390,7 +420,7 @@ export default function App() {
             <div>
               <h2 className="text-3xl font-bold text-white md:text-4xl">Start a conversation</h2>
               <p className="mt-3 max-w-xl text-white/80">
-                Tell us about your goals and constraints. We’ll respond with a practical
+                Tell us about your goals and constraints. We'll respond with a practical
                 next step and a lightweight plan to explore value, risks, and options.
               </p>
               <div className="mt-6 flex flex-col gap-2 text-white/90">
@@ -409,13 +439,11 @@ export default function App() {
               </div>
             </div>
 
-            {/* EMAILJS FORM (Formspree alternative) */}
+            {/* EMAILJS FORM */}
             <form
               ref={formRef}
               onSubmit={handleEmailJsSubmit}
               className="rounded-2xl bg-white p-6 shadow-xl"
-              // If you ever want to go back to Formspree, you can remove the onSubmit above and uncomment:
-              // action="https://formspree.io/f/mqayobpb" method="POST"
             >
               <label className="block text-sm font-medium text-gray-700">
                 Name
@@ -448,9 +476,6 @@ export default function App() {
                   required
                 />
               </label>
-
-              {/* Optional: subject for your template (only if your template uses it) */}
-              {/* <input type="hidden" name="subject" value="New enquiry from exovance.co.nz" /> */}
 
               {/* Honeypot */}
               <input
