@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -19,6 +19,83 @@ const brand = {
   graphite: "#4A4A4A",
   sand: "#E8E5DB",
 };
+
+// EmailJS configuration - move to environment variables in production
+const EMAILJS_CONFIG = {
+  serviceId: "service_iykffzy",
+  templateId: "template_s4a42ma",
+  publicKey: "vs3Im3hkjONae4fty"
+};
+
+// Data constants
+const HERO_FEATURES = [
+  { icon: Lightbulb, title: "Strategy", text: "Target architectures, roadmaps, investment cases." },
+  { icon: Network, title: "Platforms", text: "Cloud, integration, data & AI foundations." },
+  { icon: Gauge, title: "Delivery", text: "Operating models, governance, value realisation." },
+  { icon: Building2, title: "Adoption", text: "Human change, capability, continuous evolution." },
+];
+
+const SERVICES = [
+  {
+    title: "Technology Strategy & Architecture",
+    bullets: [
+      "Digital strategy & investment cases",
+      "Target state architecture & roadmaps",
+      "Platform selection & RFPs",
+    ],
+  },
+  {
+    title: "Cloud & Integration",
+    bullets: [
+      "Hybrid & multi-cloud strategy",
+      "API & event-driven architecture",
+      "Data platform & analytics foundations",
+    ],
+  },
+  {
+    title: "Transformation Delivery",
+    bullets: [
+      "Operating model design & governance",
+      "Agile at scale, DevOps, product enablement",
+      "Value metrics & benefits realisation",
+    ],
+  },
+];
+
+const APPROACH_STEPS = [
+  { n: "01", title: "Align", text: "Frame value, define the north star, align leaders across business & tech." },
+  { n: "02", title: "Architect", text: "Design target state, prioritise the roadmap, de-risk with patterns & guardrails." },
+  { n: "03", title: "Accelerate", text: "Stand up delivery, uplift capability, measure value and iterate." },
+];
+
+const CASE_STUDIES = [
+  {
+    client: "Financial services sector",
+    challenge: "Fragmented legacy platforms and manual processes",
+    outcome: "Target architecture for transition to SaaS, automation, AI, reducing cycle time and improving customer experience",
+    bullets: [
+      "Unified integration strategy & platform assessment",
+      "SaaS roadmap and Agile operating model",
+      "Accelerated delivery and reduced risk",
+    ],
+  },
+  {
+    client: "Public sector",
+    challenge: "Governance and delivery model putting projects at risk",
+    outcome: "A focused, outcome-driven delivery model for leaner, faster, and better aligned projects",
+    bullets: [
+      "Stakeholders aligned on key value drivers",
+      "Established lean governance and improved delivery",
+      "Reduced risks and costs",
+    ],
+  },
+];
+
+const ABOUT_HIGHLIGHTS = [
+  "Financial services, healthcare, public sector expertise",
+  "$100m+ portfolio experience; pragmatic governance",
+  "Architects, product leaders, data & change specialists",
+];
 
 // Simple container
 const Section = ({ id, children, className = "" }) => (
@@ -53,11 +130,6 @@ export default function App() {
   const [status, setStatus] = useState(null); // "ok" | "error" | null
   const [sending, setSending] = useState(false);
 
-  // ✅ CRITICAL FIX: Initialize EmailJS when component mounts
-  useEffect(() => {
-    emailjs.init("vs3Im3hkjONae4fty");
-  }, []);
-
   const handleEmailJsSubmit = async (e) => {
     e.preventDefault();
     setStatus(null);
@@ -68,12 +140,11 @@ export default function App() {
 
     try {
       setSending(true);
-      
-      // Send form data to Exovance (with built-in auto-reply enabled in template)
       const res = await emailjs.sendForm(
-        "service_iykffzy",       
-        "template_s4a42ma",      // Contact Form template (has auto-reply enabled)
-        formRef.current
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        formRef.current,
+        { publicKey: EMAILJS_CONFIG.publicKey }
       );
 
       if (res.status === 200) {
@@ -83,7 +154,6 @@ export default function App() {
         setStatus("error");
       }
     } catch (err) {
-      console.error("EmailJS error:", err);
       setStatus("error");
     } finally {
       setSending(false);
@@ -143,7 +213,7 @@ export default function App() {
 
       {/* Hero */}
       <Section id="top" className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+        <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
           <div
             className="absolute inset-0"
             style={{
@@ -160,8 +230,7 @@ export default function App() {
             Beyond Transformation
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-gray-600">
-            We design and deliver technology strategies that create lasting value. Not
-            just transformation — evolution. Exovance unites strategy, platforms, and
+            We design and deliver technology strategies that create lasting value. Beyond transformation — building lasting capability. Exovance unites strategy, platforms, and
             people so your organisation can keep moving forward.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -175,12 +244,7 @@ export default function App() {
             </a>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { icon: Lightbulb, title: "Strategy", text: "Target architectures, roadmaps, investment cases." },
-              { icon: Network, title: "Platforms", text: "Cloud, integration, data & AI foundations." },
-              { icon: Gauge, title: "Delivery", text: "Operating models, governance, value realisation." },
-              { icon: Building2, title: "Adoption", text: "Human change, capability, continuous evolution." },
-            ].map((f, i) => (
+            {HERO_FEATURES.map((f, i) => (
               <div key={i} className="rounded-2xl border p-5 shadow-sm">
                 <f.icon className="mb-3" style={{ color: brand.teal }} />
                 <div className="text-base font-semibold" style={{ color: brand.indigo }}>
@@ -195,7 +259,7 @@ export default function App() {
 
       {/* Services */}
       <Section id="services" className="border-y bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Services
           </h2>
@@ -204,33 +268,8 @@ export default function App() {
             execution and human-centred adoption.
           </p>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {[
-              {
-                title: "Technology Strategy & Architecture",
-                bullets: [
-                  "Digital strategy & investment cases",
-                  "Target state architecture & roadmaps",
-                  "Platform selection & RFPs",
-                ],
-              },
-              {
-                title: "Cloud & Integration",
-                bullets: [
-                  "Hybrid & multi-cloud strategy",
-                  "API & event-driven architecture",
-                  "Data platform & analytics foundations",
-                ],
-              },
-              {
-                title: "Transformation Delivery",
-                bullets: [
-                  "Operating model design & governance",
-                  "Agile at scale, DevOps, product enablement",
-                  "Value metrics & benefits realisation",
-                ],
-              },
-            ].map((service, i) => (
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {SERVICES.map((service, i) => (
               <article key={i} className="rounded-2xl border p-6 shadow-sm">
                 <div className="text-xl font-semibold" style={{ color: brand.indigo }}>
                   {service.title}
@@ -250,95 +289,40 @@ export default function App() {
       </Section>
 
       {/* Approach */}
-      <Section id="approach" className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
+      <Section id="approach" className="relative overflow-hidden bg-white border-y" aria-labelledby="approach-heading">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+          <h2 id="approach-heading" className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Our approach
           </h2>
           <p className="mt-3 max-w-3xl text-gray-600">
-            Technology transformation isn't a project — it's a capability. We partner with
-            you across discovery, design, and delivery so you can sustain momentum, adapt,
-            and evolve.
+            Simple, outcome-driven and human. We co-design the strategy, engineer the
+            foundations, and embed capability so your teams can keep evolving — beyond
+            transformation.
           </p>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {[
-              {
-                title: "1. Discover",
-                bullets: [
-                  "We listen first and uncover constraints",
-                  "Map stakeholder needs and organisational readiness",
-                  "Identify pathways that are feasible and valuable",
-                ],
-              },
-              {
-                title: "2. Design",
-                bullets: [
-                  "Target architecture to operating models",
-                  "Solutions that fit your context, not theoretical best practice",
-                  "Prototype, validate, and refine with your teams",
-                ],
-              },
-              {
-                title: "3. Deliver",
-                bullets: [
-                  "Enable your teams to execute with clarity and confidence",
-                  "Guardrails, patterns, and continuous learning",
-                  "Build capabilities that endure",
-                ],
-              },
-            ].map((phase, i) => (
-              <article key={i} className="rounded-2xl border p-6 shadow-sm">
-                <div className="text-xl font-semibold" style={{ color: brand.indigo }}>
-                  {phase.title}
-                </div>
-                <ul className="mt-3 space-y-2">
-                  {phase.bullets.map((bullet, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-gray-700">
-                      <CheckCircle2 size={18} style={{ color: brand.teal }} />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {APPROACH_STEPS.map((s, i) => (
+              <div key={i} className="rounded-2xl border p-6 shadow-sm">
+                <div className="text-sm font-mono tracking-widest" style={{ color: brand.teal }}>{s.n}</div>
+                <div className="mt-2 text-lg font-semibold" style={{ color: brand.indigo }}>{s.title}</div>
+                <p className="mt-2 text-sm text-gray-700">{s.text}</p>
+              </div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* Case Studies */}
-      <Section id="work" className="border-y bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+      {/* Work / Case studies */}
+      <Section id="work" className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
-            Case studies
+            Selected work
           </h2>
           <p className="mt-3 max-w-3xl text-gray-600">
-            Real engagements, measured outcomes — from strategy to execution.
+            Representative outcomes drawn from prior engagements. Replace with detailed
+            case studies when ready.
           </p>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {[
-              {
-                client: "Financial services provider",
-                challenge: "Fragmented legacy platforms and manual processes",
-                outcome: "Target architecture for transition to SaaS, automation, AI, reducing cycle time by 40%",
-                bullets: [
-                  "Unified integration strategy & platform assessment",
-                  "DevOps patterns & product operating model",
-                  "Accelerated delivery and reduced risk",
-                ],
-              },
-              {
-                client: "Public Sector",
-                challenge: "Unclear governance and delivery model putting projects at risk",
-                outcome: "A focused, outcome-driven delivery model for leaner, faster, and better aligned projects",
-                bullets: [
-                  "Stakeholders aligned on key value drivers",
-                  "Established a lean governance and funding model",
-                  "Accelerated delivery with reduced overhead",
-                ],
-              },
-            ].map((cs, i) => (
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {CASE_STUDIES.map((cs, i) => (
               <article key={i} className="rounded-2xl border p-6 shadow-sm">
                 <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">
                   {cs.client}
@@ -377,11 +361,7 @@ export default function App() {
                 enablement.
               </p>
               <ul className="mt-6 space-y-2 text-gray-700">
-                {[
-                  "Financial services, healthcare, public sector expertise",
-                  "$100m+ portfolio experience; pragmatic governance",
-                  "Architects, product leaders, data & change specialists",
-                ].map((t, i) => (
+                {ABOUT_HIGHLIGHTS.map((t, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <CheckCircle2 size={18} style={{ color: brand.teal }} />
                     <span>{t}</span>
@@ -423,7 +403,7 @@ export default function App() {
           style={{
             background: `linear-gradient(135deg, ${brand.indigo} 0%, ${brand.indigo} 50%, ${brand.sky} 100%)`,
           }}
-          aria-hidden
+          aria-hidden="true"
         />
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
           <div className="grid items-center gap-8 md:grid-cols-2">
@@ -442,18 +422,20 @@ export default function App() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone size={18} />{" "}
-                  <a className="underline" href="tel:+64000000000">
-                    +64 00 000 0000
+                  <a className="underline" href="tel:+64278073240">
+                    +64 27 807 3240
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* EMAILJS FORM */}
+            {/* EMAILJS FORM (Formspree alternative) */}
             <form
               ref={formRef}
               onSubmit={handleEmailJsSubmit}
               className="rounded-2xl bg-white p-6 shadow-xl"
+              // If you ever want to go back to Formspree, you can remove the onSubmit above and uncomment:
+              // action="https://formspree.io/f/mqayobpb" method="POST"
             >
               <label className="block text-sm font-medium text-gray-700">
                 Name
@@ -486,6 +468,9 @@ export default function App() {
                   required
                 />
               </label>
+
+              {/* Optional: subject for your template (only if your template uses it) */}
+              {/* <input type="hidden" name="subject" value="New enquiry from exovance.co.nz" /> */}
 
               {/* Honeypot */}
               <input
