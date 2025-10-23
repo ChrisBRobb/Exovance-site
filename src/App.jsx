@@ -320,8 +320,8 @@ export default function App() {
             {[
               {
                 client: "Financial services provider",
-                challenge: "Fragmented platforms and manual processes",
-                outcome: "Target architecture for API-led integration, reducing cycle time by 40%",
+                challenge: "Fragmented legacy platforms and manual processes",
+                outcome: "Target architecture for transition to SaaS, automation, AI, reducing cycle time by 40%",
                 bullets: [
                   "Unified integration strategy & vendor selection",
                   "DevOps patterns & product operating model",
