@@ -311,7 +311,7 @@ export default function App() {
               {
                 client: "Public Sector Client",
                 challenge: "Unclear governance and delivery model putting projects at risk",
-                outcome: "A focused, outcome-driven delivery model that’s leaner, faster, and better aligned to business value,
+                outcome: "A focused, outcome-driven delivery model that’s leaner, faster, and better aligned to business value",
                 bullets: [
                   "Aligned stakeholders on key value drivers",
                   "Established a lean governance model",
