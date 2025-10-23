@@ -323,7 +323,7 @@ export default function App() {
                 challenge: "Fragmented legacy platforms and manual processes",
                 outcome: "Target architecture for transition to SaaS, automation, AI, reducing cycle time by 40%",
                 bullets: [
-                  "Unified integration strategy & vendor selection",
+                  "Unified integration strategy & platform assessment",
                   "DevOps patterns & product operating model",
                   "Accelerated delivery and reduced risk",
                 ],
