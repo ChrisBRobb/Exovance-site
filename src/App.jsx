@@ -69,21 +69,14 @@ export default function App() {
     try {
       setSending(true);
       
-      // Send form data to Exovance
-      const res1 = await emailjs.sendForm(
+      // Send form data to Exovance (with built-in auto-reply enabled in template)
+      const res = await emailjs.sendForm(
         "service_iykffzy",       
-        "template_s4a42ma",      // Contact Form template (to hello@exovance.co.nz)
+        "template_s4a42ma",      // Contact Form template (has auto-reply enabled)
         formRef.current
       );
 
-      // Send auto-reply to customer
-      const res2 = await emailjs.sendForm(
-        "service_iykffzy",       
-        "template_cje51dd",      // Auto-Reply template (to customer)
-        formRef.current
-      );
-
-      if (res1.status === 200 && res2.status === 200) {
+      if (res.status === 200) {
         setStatus("ok");
         formRef.current.reset();
       } else {
