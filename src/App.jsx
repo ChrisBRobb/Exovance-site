@@ -68,14 +68,22 @@ export default function App() {
 
     try {
       setSending(true);
-      const res = await emailjs.sendForm(
-        "service_iykffzy",       // <- your EmailJS service id
-        "template_s4a42ma",      // <- your EmailJS template id
+      
+      // Send form data to Exovance
+      const res1 = await emailjs.sendForm(
+        "service_iykffzy",       
+        "template_s4a42ma",      // Contact Form template (to hello@exovance.co.nz)
         formRef.current
-        // ✅ Note: publicKey is passed in init(), not here
       );
 
-      if (res.status === 200) {
+      // Send auto-reply to customer
+      const res2 = await emailjs.sendForm(
+        "service_iykffzy",       
+        "template_cje51dd",      // Auto-Reply template (to customer)
+        formRef.current
+      );
+
+      if (res1.status === 200 && res2.status === 200) {
         setStatus("ok");
         formRef.current.reset();
       } else {
