@@ -160,7 +160,8 @@ export default function App() {
             Beyond Transformation
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-gray-600">
-            We craft technology strategies that don’t just transform — they propel and sustain your ongoing evolution. Exovance unites strategy, platforms, and
+            We design and deliver technology strategies that create lasting value. Not
+            just transformation — evolution. Exovance unites strategy, platforms, and
             people so your organisation can keep moving forward.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -309,16 +310,25 @@ export default function App() {
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {[
               {
-                client: "Public Sector Client",
+                client: "Financial services provider",
+                challenge: "Fragmented platforms and manual processes",
+                outcome: "Target architecture for API-led integration, reducing cycle time by 40%",
+                bullets: [
+                  "Unified integration strategy & vendor selection",
+                  "DevOps patterns & product operating model",
+                  "Accelerated delivery and reduced risk",
+                ],
+              },
+              {
+                client: "Healthcare organisation",
                 challenge: "Unclear governance and delivery model putting projects at risk",
-                outcome: "A focused, outcome-driven delivery model that’s leaner, faster, and better aligned to business value",
+                outcome: "A focused, outcome-driven delivery model that's leaner, faster, and better aligned to business goals",
                 bullets: [
                   "Aligned stakeholders on key value drivers",
                   "Established a lean governance model",
-                  "Accelerated agile delivery and reduced risk",
+                  "Accelerated delivery with reduced overhead",
                 ],
               },
-         
             ].map((cs, i) => (
               <article key={i} className="rounded-2xl border p-6 shadow-sm">
                 <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">
