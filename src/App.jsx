@@ -260,38 +260,47 @@ export default function App() {
             you across discovery, design, and delivery so you can sustain momentum, adapt,
             and evolve.
           </p>
-          <div className="mt-10 space-y-6">
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {[
               {
-                step: "1. Discover",
-                text: "We listen first. We uncover constraints, stakeholder needs, and organisational readiness — then map the pathways that are feasible and valuable.",
+                title: "1. Discover",
+                bullets: [
+                  "We listen first and uncover constraints",
+                  "Map stakeholder needs and organisational readiness",
+                  "Identify pathways that are feasible and valuable",
+                ],
               },
               {
-                step: "2. Design",
-                text: "From target architecture to operating models, we design solutions that fit your context — not theoretical best practice. We prototype, validate, and refine with your teams.",
+                title: "2. Design",
+                bullets: [
+                  "Target architecture to operating models",
+                  "Solutions that fit your context, not theoretical best practice",
+                  "Prototype, validate, and refine with your teams",
+                ],
               },
               {
-                step: "3. Deliver",
-                text: "We enable your teams to execute with clarity and confidence. Guardrails, patterns, and continuous learning build capabilities that endure.",
+                title: "3. Deliver",
+                bullets: [
+                  "Enable your teams to execute with clarity and confidence",
+                  "Guardrails, patterns, and continuous learning",
+                  "Build capabilities that endure",
+                ],
               },
             ].map((phase, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-4 rounded-2xl border p-6 shadow-sm"
-              >
-                <div
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold text-white"
-                  style={{ background: brand.teal }}
-                >
-                  {i + 1}
+              <article key={i} className="rounded-2xl border p-6 shadow-sm">
+                <div className="text-xl font-semibold" style={{ color: brand.indigo }}>
+                  {phase.title}
                 </div>
-                <div>
-                  <div className="text-lg font-semibold" style={{ color: brand.indigo }}>
-                    {phase.step}
-                  </div>
-                  <p className="mt-1 text-gray-700">{phase.text}</p>
-                </div>
-              </div>
+                <ul className="mt-3 space-y-2">
+                  {phase.bullets.map((bullet, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-gray-700">
+                      <CheckCircle2 size={18} style={{ color: brand.teal }} />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
         </div>
