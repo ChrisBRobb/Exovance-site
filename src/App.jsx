@@ -246,10 +246,10 @@ export default function App() {
       <Section id="approach" className="relative overflow-hidden" aria-labelledby="approach-heading">
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 45%, white 45%)` }}
+          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 50%, white 50%)` }}
           aria-hidden
         />
-        <div className="mx-auto max-w-6xl px-4 py-4">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <h2 id="approach-heading" className="text-3xl font-bold text-white md:text-4xl">
             Our approach
           </h2>
@@ -258,7 +258,7 @@ export default function App() {
             foundations, and embed capability so your teams can keep evolving — beyond
             transformation.
           </p>
-          <div className="mt-4 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
             {[
               { n: "01", title: "Align", text: "Frame value, define the north star, align leaders across business & tech." },
               { n: "02", title: "Architect", text: "Design target state, prioritise the roadmap, de-risk with patterns & guardrails." },
@@ -275,8 +275,8 @@ export default function App() {
       </Section>
 
       {/* Work / Case studies */}
-      <Section id="work" className="bg-white -mt-24">
-        <div className="mx-auto max-w-6xl px-4 py-4">
+      <Section id="work" className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Selected work
           </h2>
@@ -284,7 +284,7 @@ export default function App() {
             Representative outcomes drawn from prior engagements. Replace with detailed
             case studies when ready.
           </p>
-          <div className="mt-4 grid gap-6 md:grid-cols-2">
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
             {[
               {
                 client: "Financial services sector",
@@ -298,7 +298,7 @@ export default function App() {
               },
               {
                 client: "Public sector",
-                challenge: "Governance and delivery model putting projects at risk",
+                challenge: "Unclear governance and delivery model putting projects at risk",
                 outcome: "A focused, outcome-driven delivery model for leaner, faster, and better aligned projects",
                 bullets: [
                   "Stakeholders aligned on key value drivers",
