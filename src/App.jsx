@@ -302,9 +302,16 @@ export default function App() {
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {APPROACH_STEPS.map((s, i) => (
               <div key={i} className="rounded-2xl border p-6 shadow-sm">
-                <div className="text-sm font-mono tracking-widest" style={{ color: brand.teal }}>{s.n}</div>
-                <div className="mt-2 text-lg font-semibold" style={{ color: brand.indigo }}>{s.title}</div>
-                <p className="mt-2 text-sm text-gray-700">{s.text}</p>
+                <div className="flex items-center gap-3">
+                  <div 
+                    className="flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold text-white"
+                    style={{ background: brand.teal }}
+                  >
+                    {s.n}
+                  </div>
+                  <div className="text-lg font-semibold" style={{ color: brand.indigo }}>{s.title}</div>
+                </div>
+                <p className="mt-3 text-sm text-gray-700">{s.text}</p>
               </div>
             ))}
           </div>
