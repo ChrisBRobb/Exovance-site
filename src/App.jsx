@@ -188,7 +188,7 @@ export default function App() {
 
       {/* Services */}
       <Section id="services" className="border-y bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Services
           </h2>
@@ -197,7 +197,7 @@ export default function App() {
             execution and human-centred adoption.
           </p>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {[
               {
                 title: "Technology Strategy & Architecture",
@@ -246,7 +246,7 @@ export default function App() {
       <Section id="approach" className="relative overflow-hidden" aria-labelledby="approach-heading">
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 55%, white 55%)` }}
+          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 50%, white 50%)` }}
           aria-hidden
         />
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
@@ -258,7 +258,7 @@ export default function App() {
             foundations, and embed capability so your teams can keep evolving — beyond
             transformation.
           </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
             {[
               { n: "01", title: "Align", text: "Frame value, define the north star, align leaders across business & tech." },
               { n: "02", title: "Architect", text: "Design target state, prioritise the roadmap, de-risk with patterns & guardrails." },
