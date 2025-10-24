@@ -246,7 +246,7 @@ export default function App() {
       <Section id="approach" className="relative overflow-hidden" aria-labelledby="approach-heading">
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 55%, white 55%)` }}
+          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 45%, white 45%)` }}
           aria-hidden
         />
         <div className="mx-auto max-w-6xl px-4 py-4">
@@ -275,7 +275,7 @@ export default function App() {
       </Section>
 
       {/* Work / Case studies */}
-      <Section id="work" className="bg-white -mt-12">
+      <Section id="work" className="bg-white -mt-24">
         <div className="mx-auto max-w-6xl px-4 py-4">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Selected work
