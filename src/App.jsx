@@ -287,21 +287,26 @@ export default function App() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {[
               {
-                title: "Core platform modernisation for an NZ insurer",
+                client: "Financial services sector",
+                challenge: "Fragmented legacy platforms and manual processes",
+                outcome: "Target architecture for transition to SaaS, automation, AI, reducing cycle time and improving customer experience",
                 bullets: [
-                  "Target architecture & roadmap across data, integration, and CRM",
-                  "Established value tracking and governance guardrails",
-                  "Reduced time-to-market by 35% in 12 months",
+                  "Unified integration strategy & platform assessment",
+                  "SaaS roadmap and Agile operating model",
+                  "Accelerated delivery and reduced risk",
                 ],
               },
               {
-                title: "AI-readiness and data governance uplift",
+                client: "Public sector",
+                challenge: "Unclear governance and delivery model putting projects at risk",
+                outcome: "A focused, outcome-driven delivery model for leaner, faster, and better aligned projects",
                 bullets: [
-                  "Enterprise data strategy & operating model",
-                  "Privacy, risk & security controls embedded",
-                  "Pilot AI use-cases with measurable ROI",
+                  "Stakeholders aligned on key value drivers",
+                  "Established lean governance and improved delivery",
+                  "Reduced risks and costs",
                 ],
               },
+
             ].map((cs, i) => (
               <article key={i} className="rounded-2xl border p-6 shadow-sm">
                 <h3 className="text-lg font-semibold" style={{ color: brand.indigo }}>
