@@ -245,7 +245,7 @@ export default function App() {
       <Section id="approach" className="relative overflow-hidden" aria-labelledby="approach-heading">
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 45%, white 45%)` }}
+          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 35%, white 35%)` }}
           aria-hidden
         />
         <div className="mx-auto max-w-6xl px-4 py-6 md:py-8">
