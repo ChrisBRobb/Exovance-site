@@ -249,7 +249,7 @@ export default function App() {
           style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 55%, white 55%)` }}
           aria-hidden
         />
-        <div className="mx-auto max-w-6xl px-4 py-8 md:py-10">
+        <div className="mx-auto max-w-6xl px-4 py-4">
           <h2 id="approach-heading" className="text-3xl font-bold text-white md:text-4xl">
             Our approach
           </h2>
@@ -276,7 +276,7 @@ export default function App() {
 
       {/* Work / Case studies */}
       <Section id="work" className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-8 md:py-10">
+        <div className="mx-auto max-w-6xl px-4 py-4">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Selected work
           </h2>
