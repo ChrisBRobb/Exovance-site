@@ -64,8 +64,8 @@ export default function App() {
     try {
       setSending(true);
       const res = await emailjs.sendForm(
-        "service_iykffzy",       // <- your EmailJS service id
-        "template_s4a42ma",      // <- your EmailJS template id
+        "service_iykffzy", // <- your EmailJS service id
+        "template_s4a42ma", // <- your EmailJS template id
         formRef.current,
         { publicKey: "vs3Im3hkjONae4fty" } // <- your EmailJS public key
       );
@@ -153,8 +153,7 @@ export default function App() {
             Beyond Transformation
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-gray-600">
-            We design and deliver technology strategies that create lasting value. Not
-            just transformation — evolution. Exovance unites strategy, platforms, and
+            We design and deliver technology strategies that create lasting value.Beyond transformation — building lasting capability. Exovance unites strategy, platforms, and
             people so your organisation can keep moving forward.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -188,7 +187,7 @@ export default function App() {
 
       {/* Services */}
       <Section id="services" className="border-y bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4 pt-12 pb-8 md:pt-16 md:pb-10">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Services
           </h2>
@@ -246,10 +245,12 @@ export default function App() {
       <Section id="approach" className="relative overflow-hidden" aria-labelledby="approach-heading">
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 50%, white 50%)` }}
+          style={{
+            background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 70%, white 70%)`,
+          }}
           aria-hidden
         />
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4 py-8 md:py-10">
           <h2 id="approach-heading" className="text-3xl font-bold text-white md:text-4xl">
             Our approach
           </h2>
@@ -275,8 +276,8 @@ export default function App() {
       </Section>
 
       {/* Work / Case studies */}
-      <Section id="work" className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <Section id="work" className="bg-white -mt-4 md:-mt-6">
+        <div className="mx-auto max-w-6xl px-4 pt-8 pb-12 md:pt-10 md:pb-16">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Selected work
           </h2>
@@ -289,7 +290,8 @@ export default function App() {
               {
                 client: "Financial services sector",
                 challenge: "Fragmented legacy platforms and manual processes",
-                outcome: "Target architecture for transition to SaaS, automation, AI, reducing cycle time and improving customer experience",
+                outcome:
+                  "Target architecture for transition to SaaS, automation, AI, reducing cycle time and improving customer experience",
                 bullets: [
                   "Unified integration strategy & platform assessment",
                   "SaaS roadmap and Agile operating model",
@@ -299,7 +301,8 @@ export default function App() {
               {
                 client: "Public sector",
                 challenge: "Governance and delivery model putting projects at risk",
-                outcome: "A focused, outcome-driven delivery model for leaner, faster, and better aligned projects",
+                outcome:
+                  "A focused, outcome-driven delivery model for leaner, faster, and better aligned projects",
                 bullets: [
                   "Stakeholders aligned on key value drivers",
                   "Established lean governance and improved delivery",
@@ -370,7 +373,7 @@ export default function App() {
                   <dt className="font-medium">Human-centred</dt>
                   <dd>Change and capability embedded in every engagement.</dd>
                 </div>
-                <div>
+                <div className="col-span-1">
                   <dt className="font-medium">Measured outcomes</dt>
                   <dd>Value tracking and benefits realisation baked in.</dd>
                 </div>
