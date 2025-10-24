@@ -168,7 +168,7 @@ export default function App() {
           {/* Logo wordmark */}
           <a href="#top" className="flex items-center gap-2">
             <div
-              className="text-xl font-extrabold tracking-tight"
+              className="text-2xl font-extrabold tracking-tight"
               style={{ color: brand.indigo }}
             >
               EXO<span style={{ color: brand.teal }}>VANCE</span>
@@ -309,7 +309,7 @@ export default function App() {
                   >
                     {s.n}
                   </div>
-                  <div className="text-lg font-semibold" style={{ color: brand.indigo }}>{s.title}</div>
+                  <div className="text-xl font-semibold" style={{ color: brand.indigo }}>{s.title}</div>
                 </div>
                 <p className="mt-3 text-sm text-gray-700">{s.text}</p>
               </div>
@@ -516,7 +516,7 @@ export default function App() {
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 py-10">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-            <div className="text-lg font-extrabold" style={{ color: brand.indigo }}>
+            <div className="text-2xl font-extrabold" style={{ color: brand.indigo }}>
               EXO<span style={{ color: brand.teal }}>VANCE</span>
             </div>
             <div className="text-sm text-gray-600">
