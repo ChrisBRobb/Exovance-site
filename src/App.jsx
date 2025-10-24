@@ -208,35 +208,35 @@ export default function App() {
                 ],
               },
               {
-                title: "Data, AI & Platforms",
+                title: "Cloud & Integration",
                 bullets: [
-                  "Data strategy & governance",
-                  "AI readiness & pilot programmes",
-                  "Cloud, integration & API ecosystems",
+                  "Hybrid & multi-cloud strategy",
+                  "API & event-driven architecture",
+                  "Data platform & analytics foundations",
                 ],
               },
               {
-                title: "Delivery, Operating Model & Change",
+                title: "Transformation Delivery",
                 bullets: [
-                  "Portfolio setup & PMO",
-                  "Risk, security & resilience uplift",
-                  "Change, capability & adoption",
+                  "Operating model design & governance",
+                  "Agile at scale, DevOps, product enablement",
+                  "Value metrics & benefits realisation",
                 ],
               },
-            ].map((card, idx) => (
-              <div key={idx} className="rounded-2xl border p-6 shadow-sm">
-                <div className="text-lg font-semibold" style={{ color: brand.indigo }}>
-                  {card.title}
+            ].map((service, i) => (
+              <article key={i} className="rounded-2xl border p-6 shadow-sm">
+                <div className="text-xl font-semibold" style={{ color: brand.indigo }}>
+                  {service.title}
                 </div>
-                <ul className="mt-4 space-y-2">
-                  {card.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                <ul className="mt-3 space-y-2">
+                  {service.bullets.map((bullet, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-gray-700">
                       <CheckCircle2 size={18} style={{ color: brand.teal }} />
-                      <span>{b}</span>
+                      <span>{bullet}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -249,7 +249,7 @@ export default function App() {
           style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 55%, white 55%)` }}
           aria-hidden
         />
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <h2 id="approach-heading" className="text-3xl font-bold text-white md:text-4xl">
             Our approach
           </h2>
@@ -276,7 +276,7 @@ export default function App() {
 
       {/* Work / Case studies */}
       <Section id="work" className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Selected work
           </h2>
@@ -306,12 +306,15 @@ export default function App() {
                   "Reduced risks and costs",
                 ],
               },
-
             ].map((cs, i) => (
               <article key={i} className="rounded-2xl border p-6 shadow-sm">
-                <h3 className="text-lg font-semibold" style={{ color: brand.indigo }}>
-                  {cs.title}
-                </h3>
+                <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                  {cs.client}
+                </div>
+                <div className="mt-2 text-lg font-semibold" style={{ color: brand.indigo }}>
+                  {cs.challenge}
+                </div>
+                <p className="mt-2 text-sm italic text-gray-600">{cs.outcome}</p>
                 <ul className="mt-3 space-y-2">
                   {cs.bullets.map((b, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
@@ -395,7 +398,7 @@ export default function App() {
             <div>
               <h2 className="text-3xl font-bold text-white md:text-4xl">Start a conversation</h2>
               <p className="mt-3 max-w-xl text-white/80">
-                Tell us about your goals and constraints. We’ll respond with a practical
+                Tell us about your goals and constraints. We'll respond with a practical
                 next step and a lightweight plan to explore value, risks, and options.
               </p>
               <div className="mt-6 flex flex-col gap-2 text-white/90">
@@ -407,8 +410,8 @@ export default function App() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone size={18} />{" "}
-                  <a className="underline" href="tel:+64000000000">
-                    +64 00 000 0000
+                  <a className="underline" href="tel:+64278073240">
+                    +64 27 807 3240
                   </a>
                 </div>
               </div>
