@@ -304,7 +304,7 @@ export default function App() {
               <div key={i} className="rounded-2xl border p-6 shadow-sm">
                 <div className="flex items-center gap-3">
                   <div 
-                    className="flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold text-white"
+                    className="flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold text-white"
                     style={{ background: brand.teal }}
                   >
                     {s.n}
