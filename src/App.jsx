@@ -1,6 +1,529 @@
 import React, { useRef, useState } from "react";
 import {
+  import React, { useRef, useState } from "react";
+import {
   ArrowRight,
+  CheckCircle2,
+  Lightbulb,
+  Network,
+  Gauge,
+  Building2,
+  Mail,
+  Phone,
+} from "lucide-react";
+import emailjs from "@emailjs/browser";
+
+// Exovance brand tokens
+const brand = {
+  indigo: "#2B2F77",
+  teal: "#00C6AE",
+  sky: "#57A0FF",
+  graphite: "#4A4A4A",
+  sand: "#E8E5DB",
+};
+
+// Simple container
+const Section = ({ id, children, className = "" }) => (
+  <section id={id} className={`w-full ${className}`}>
+    {children}
+  </section>
+);
+
+// Pill tag
+const Pill = ({ children }) => (
+  <span
+    className="inline-block rounded-full px-3 py-1 text-xs font-medium"
+    style={{ background: brand.sand, color: brand.graphite }}
+  >
+    {children}
+  </span>
+);
+
+// CTA Button
+const CTA = ({ href = "#contact", children }) => (
+  <a
+    href={href}
+    className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm transition hover:shadow-md"
+    style={{ background: brand.teal, color: "white" }}
+  >
+    {children} <ArrowRight size={18} />
+  </a>
+);
+
+export default function App() {
+  const formRef = useRef(null);
+  const [status, setStatus] = useState(null); // "ok" | "error" | null
+  const [sending, setSending] = useState(false);
+
+  const handleEmailJsSubmit = async (e) => {
+    e.preventDefault();
+    setStatus(null);
+
+    // Simple honeypot: if filled, treat as bot and do nothing.
+    const hp = formRef.current?.querySelector('input[name="website"]');
+    if (hp && hp.value) return;
+
+    try {
+      setSending(true);
+      const res = await emailjs.sendForm(
+        "service_iykffzy",       // <- your EmailJS service id
+        "template_s4a42ma",      // <- your EmailJS template id
+        formRef.current,
+        { publicKey: "vs3Im3hkjONae4fty" } // <- your EmailJS public key
+      );
+
+      if (res.status === 200) {
+        setStatus("ok");
+        formRef.current.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen w-full text-gray-900" style={{ background: "white" }}>
+      {/* Top nav */}
+      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+          {/* Logo wordmark */}
+          <a href="#top" className="flex items-center gap-2">
+            <div
+              className="text-xl font-extrabold tracking-tight"
+              style={{ color: brand.indigo }}
+            >
+              EXO<span style={{ color: brand.teal }}>VANCE</span>
+            </div>
+            <div className="sr-only">Exovance — Beyond Transformation</div>
+          </a>
+          <nav className="hidden gap-6 md:flex" aria-label="Primary">
+            <a
+              href="#services"
+              className="text-sm font-medium hover:underline"
+              style={{ color: brand.graphite }}
+            >
+              Services
+            </a>
+            <a
+              href="#approach"
+              className="text-sm font-medium hover:underline"
+              style={{ color: brand.graphite }}
+            >
+              Approach
+            </a>
+            <a
+              href="#work"
+              className="text-sm font-medium hover:underline"
+              style={{ color: brand.graphite }}
+            >
+              Case studies
+            </a>
+            <a
+              href="#about"
+              className="text-sm font-medium hover:underline"
+              style={{ color: brand.graphite }}
+            >
+              About
+            </a>
+          </nav>
+          <div className="hidden md:block">
+            <CTA>Start a conversation</CTA>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <Section id="top" className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(1200px 600px at 20% -10%, ${brand.sky}15, transparent), radial-gradient(1200px 600px at 80% 10%, ${brand.teal}15, transparent)`,
+            }}
+          />
+        </div>
+        <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
+          <Pill>Technology consulting</Pill>
+          <h1
+            className="mt-6 text-4xl font-extrabold leading-tight md:text-6xl"
+            style={{ color: brand.indigo }}
+          >
+            Beyond Transformation
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-gray-600">
+            We design and deliver technology strategies that create lasting value.Beyond transformation — building lasting capability. Exovance unites strategy, platforms, and
+            people so your organisation can keep moving forward.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <CTA>Book a discovery call</CTA>
+            <a
+              href="#services"
+              className="rounded-2xl px-5 py-3 text-sm font-semibold"
+              style={{ color: brand.indigo, background: brand.sand }}
+            >
+              Explore services
+            </a>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: Lightbulb, title: "Strategy", text: "Target architectures, roadmaps, investment cases." },
+              { icon: Network, title: "Platforms", text: "Cloud, integration, data & AI foundations." },
+              { icon: Gauge, title: "Delivery", text: "Operating models, governance, value realisation." },
+              { icon: Building2, title: "Adoption", text: "Human change, capability, continuous evolution." },
+            ].map((f, i) => (
+              <div key={i} className="rounded-2xl border p-5 shadow-sm">
+                <f.icon className="mb-3" style={{ color: brand.teal }} />
+                <div className="text-base font-semibold" style={{ color: brand.indigo }}>
+                  {f.title}
+                </div>
+                <p className="mt-1 text-sm text-gray-600">{f.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Services */}
+      <Section id="services" className="border-y bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+          <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
+            Services
+          </h2>
+          <p className="mt-3 max-w-3xl text-gray-600">
+            Advisory that connects vision to value — from boardroom strategy to platform
+            execution and human-centred adoption.
+          </p>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {[
+              {
+                title: "Technology Strategy & Architecture",
+                bullets: [
+                  "Digital strategy & investment cases",
+                  "Target state architecture & roadmaps",
+                  "Platform selection & RFPs",
+                ],
+              },
+              {
+                title: "Cloud & Integration",
+                bullets: [
+                  "Hybrid & multi-cloud strategy",
+                  "API & event-driven architecture",
+                  "Data platform & analytics foundations",
+                ],
+              },
+              {
+                title: "Transformation Delivery",
+                bullets: [
+                  "Operating model design & governance",
+                  "Agile at scale, DevOps, product enablement",
+                  "Value metrics & benefits realisation",
+                ],
+              },
+            ].map((service, i) => (
+              <article key={i} className="rounded-2xl border p-6 shadow-sm">
+                <div className="text-xl font-semibold" style={{ color: brand.indigo }}>
+                  {service.title}
+                </div>
+                <ul className="mt-3 space-y-2">
+                  {service.bullets.map((bullet, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-gray-700">
+                      <CheckCircle2 size={18} style={{ color: brand.teal }} />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Approach */}
+      <Section id="approach" className="relative overflow-hidden" aria-labelledby="approach-heading">
+        <div
+          className="absolute inset-0 -z-10"
+          style={{ background: `linear-gradient(180deg, ${brand.indigo} 0%, ${brand.indigo} 35%, white 35%)` }}
+          aria-hidden
+        />
+        <div className="mx-auto max-w-6xl px-4 py-6 md:py-8">
+          <h2 id="approach-heading" className="text-3xl font-bold text-white md:text-4xl">
+            Our approach
+          </h2>
+          <p className="mt-3 max-w-3xl text-white/80">
+            Simple, outcome-driven and human. We co-design the strategy, engineer the
+            foundations, and embed capability so your teams can keep evolving — beyond
+            transformation.
+          </p>
+          <div className="mt-4 grid gap-6 md:grid-cols-3">
+            {[
+              { n: "01", title: "Align", text: "Frame value, define the north star, align leaders across business & tech." },
+              { n: "02", title: "Architect", text: "Design target state, prioritise the roadmap, de-risk with patterns & guardrails." },
+              { n: "03", title: "Accelerate", text: "Stand up delivery, uplift capability, measure value and iterate." },
+            ].map((s, i) => (
+              <div key={i} className="rounded-2xl bg-white/10 p-6 backdrop-blur">
+                <div className="text-sm font-mono tracking-widest text-white/70">{s.n}</div>
+                <div className="mt-2 text-lg font-semibold text-white">{s.title}</div>
+                <p className="mt-2 text-sm text-white/80">{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Work / Case studies */}
+      <Section id="work" className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+          <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
+            Selected work
+          </h2>
+          <p className="mt-3 max-w-3xl text-gray-600">
+            Representative outcomes drawn from prior engagements. Replace with detailed
+            case studies when ready.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {[
+              {
+                client: "Financial services sector",
+                challenge: "Fragmented legacy platforms and manual processes",
+                outcome: "Target architecture for transition to SaaS, automation, AI, reducing cycle time and improving customer experience",
+                bullets: [
+                  "Unified integration strategy & platform assessment",
+                  "SaaS roadmap and Agile operating model",
+                  "Accelerated delivery and reduced risk",
+                ],
+              },
+              {
+                client: "Public sector",
+                challenge: "Governance and delivery model putting projects at risk",
+                outcome: "A focused, outcome-driven delivery model for leaner, faster, and better aligned projects",
+                bullets: [
+                  "Stakeholders aligned on key value drivers",
+                  "Established lean governance and improved delivery",
+                  "Reduced risks and costs",
+                ],
+              },
+            ].map((cs, i) => (
+              <article key={i} className="rounded-2xl border p-6 shadow-sm">
+                <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                  {cs.client}
+                </div>
+                <div className="mt-2 text-lg font-semibold" style={{ color: brand.indigo }}>
+                  {cs.challenge}
+                </div>
+                <p className="mt-2 text-sm italic text-gray-600">{cs.outcome}</p>
+                <ul className="mt-3 space-y-2">
+                  {cs.bullets.map((b, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                      <CheckCircle2 size={18} style={{ color: brand.teal }} />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* About */}
+      <Section id="about" className="bg-[color:var(--sand)]" style={{ ["--sand"]: brand.sand }}>
+        <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
+          <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
+            About Exovance
+          </h2>
+          <div className="mt-6 grid gap-10 md:grid-cols-2">
+            <div>
+              <p className="text-gray-700">
+                Exovance is a boutique technology consulting partner headquartered in
+                Aotearoa New Zealand. We help organisations align strategy and platforms
+                with the people who use them — so change sticks and value compounds. Our
+                model blends executive advisory with hands-on architecture and delivery
+                enablement.
+              </p>
+              <ul className="mt-6 space-y-2 text-gray-700">
+                {[
+                  "Financial services, healthcare, public sector expertise",
+                  "$100m+ portfolio experience; pragmatic governance",
+                  "Architects, product leaders, data & change specialists",
+                ].map((t, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 size={18} style={{ color: brand.teal }} />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border p-6 shadow-sm">
+              <div className="text-lg font-semibold" style={{ color: brand.indigo }}>
+                Highlights
+              </div>
+              <dl className="mt-4 grid grid-cols-2 gap-6 text-sm text-gray-700">
+                <div>
+                  <dt className="font-medium">Time-to-value</dt>
+                  <dd>Accelerators, patterns, and guardrails for faster delivery.</dd>
+                </div>
+                <div>
+                  <dt className="font-medium">Human-centred</dt>
+                  <dd>Change and capability embedded in every engagement.</dd>
+                </div>
+                <div>
+                  <dt className="font-medium">Measured outcomes</dt>
+                  <dd>Value tracking and benefits realisation baked in.</dd>
+                </div>
+                <div>
+                  <dt className="font-medium">Trusted partners</dt>
+                  <dd>We work alongside your teams and vendors — transparently.</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Contact */}
+      <Section id="contact" className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background: `linear-gradient(135deg, ${brand.indigo} 0%, ${brand.indigo} 50%, ${brand.sky} 100%)`,
+          }}
+          aria-hidden
+        />
+        <div className="mx-auto max-w-6xl px-4 py-16 md:py-24">
+          <div className="grid items-center gap-8 md:grid-cols-2">
+            <div>
+              <h2 className="text-3xl font-bold text-white md:text-4xl">Start a conversation</h2>
+              <p className="mt-3 max-w-xl text-white/80">
+                Tell us about your goals and constraints. We'll respond with a practical
+                next step and a lightweight plan to explore value, risks, and options.
+              </p>
+              <div className="mt-6 flex flex-col gap-2 text-white/90">
+                <div className="flex items-center gap-2">
+                  <Mail size={18} />{" "}
+                  <a className="underline" href="mailto:hello@exovance.co.nz">
+                    hello@exovance.co.nz
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone size={18} />{" "}
+                  <a className="underline" href="tel:+64278073240">
+                    +64 27 807 3240
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* EMAILJS FORM (Formspree alternative) */}
+            <form
+              ref={formRef}
+              onSubmit={handleEmailJsSubmit}
+              className="rounded-2xl bg-white p-6 shadow-xl"
+              // If you ever want to go back to Formspree, you can remove the onSubmit above and uncomment:
+              // action="https://formspree.io/f/mqayobpb" method="POST"
+            >
+              <label className="block text-sm font-medium text-gray-700">
+                Name
+                <input
+                  name="from_name"
+                  className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring"
+                  placeholder="Your name"
+                  required
+                />
+              </label>
+
+              <label className="mt-4 block text-sm font-medium text-gray-700">
+                Email
+                <input
+                  type="email"
+                  name="reply_to"
+                  className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring"
+                  placeholder="you@company.com"
+                  required
+                />
+              </label>
+
+              <label className="mt-4 block text-sm font-medium text-gray-700">
+                Message
+                <textarea
+                  name="message"
+                  rows={4}
+                  className="mt-1 w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring"
+                  placeholder="What challenge are you solving?"
+                  required
+                />
+              </label>
+
+              {/* Optional: subject for your template (only if your template uses it) */}
+              {/* <input type="hidden" name="subject" value="New enquiry from exovance.co.nz" /> */}
+
+              {/* Honeypot */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{ display: "none" }}
+              />
+
+              <button
+                type="submit"
+                disabled={sending}
+                className="mt-5 w-full rounded-2xl px-5 py-3 font-semibold text-white disabled:opacity-70"
+                style={{ background: brand.teal }}
+              >
+                {sending ? "Sending..." : "Send message"}
+              </button>
+
+              {status === "ok" && (
+                <p className="mt-3 text-sm text-green-700">
+                  Thanks — your message has been sent.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="mt-3 text-sm text-red-700">
+                  Sorry, something went wrong. Please try again.
+                </p>
+              )}
+            </form>
+          </div>
+        </div>
+      </Section>
+
+      {/* Footer */}
+      <footer className="border-t">
+        <div className="mx-auto max-w-6xl px-4 py-10">
+          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+            <div className="text-lg font-extrabold" style={{ color: brand.indigo }}>
+              EXO<span style={{ color: brand.teal }}>VANCE</span>
+            </div>
+            <div className="text-sm text-gray-600">
+              © {new Date().getFullYear()} Exovance Ltd. All rights reserved.
+            </div>
+            <div className="flex items-center gap-4 text-sm">
+              <a href="#services" className="hover:underline">
+                Services
+              </a>
+              <a href="#approach" className="hover:underline">
+                Approach
+              </a>
+              <a href="#work" className="hover:underline">
+                Work
+              </a>
+              <a href="#about" className="hover:underline">
+                About
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}ArrowRight,
   CheckCircle2,
   Lightbulb,
   Network,
