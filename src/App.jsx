@@ -258,7 +258,7 @@ export default function App() {
             foundations, and embed capability so your teams can keep evolving — beyond
             transformation.
           </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-4 grid gap-6 md:grid-cols-3">
             {[
               { n: "01", title: "Align", text: "Frame value, define the north star, align leaders across business & tech." },
               { n: "02", title: "Architect", text: "Design target state, prioritise the roadmap, de-risk with patterns & guardrails." },
@@ -275,7 +275,7 @@ export default function App() {
       </Section>
 
       {/* Work / Case studies */}
-      <Section id="work" className="bg-white">
+      <Section id="work" className="bg-white -mt-12">
         <div className="mx-auto max-w-6xl px-4 py-4">
           <h2 className="text-3xl font-bold md:text-4xl" style={{ color: brand.indigo }}>
             Selected work
@@ -284,7 +284,7 @@ export default function App() {
             Representative outcomes drawn from prior engagements. Replace with detailed
             case studies when ready.
           </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <div className="mt-4 grid gap-6 md:grid-cols-2">
             {[
               {
                 client: "Financial services sector",
