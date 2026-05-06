@@ -1,63 +1,793 @@
 <!DOCTYPE html>
-<html lang="en-NZ">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Primary Meta Tags -->
-  <title>Exovance | Technology Consulting & Digital Transformation NZ</title>
-  <meta name="title" content="Exovance | Technology Consulting & Digital Transformation NZ" />
-  <meta name="description" content="Boutique technology consulting partner in New Zealand. We design and deliver technology strategies, cloud architecture, and digital transformation that create lasting value." />
-  <meta name="keywords" content="technology consulting NZ, digital transformation New Zealand, cloud architecture, IT strategy Auckland, enterprise architecture, technology advisory" />
-  <meta name="author" content="Exovance Ltd" />
-  <meta name="robots" content="index, follow" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.exovance.co.nz/" />
-  <meta property="og:title" content="Exovance | Technology Consulting & Digital Transformation NZ" />
-  <meta property="og:description" content="Boutique technology consulting partner in New Zealand. We design and deliver technology strategies that create lasting value." />
-  <meta property="og:image" content="https://www.exovance.co.nz/og-image.jpg" />
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://www.exovance.co.nz/" />
-  <meta property="twitter:title" content="Exovance | Technology Consulting & Digital Transformation NZ" />
-  <meta property="twitter:description" content="Boutique technology consulting partner in New Zealand. We design and deliver technology strategies that create lasting value." />
-  <meta property="twitter:image" content="https://www.exovance.co.nz/twitter-image.jpg" />
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://www.exovance.co.nz/" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  
-  <!-- Schema.org Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Exovance",
-    "description": "Technology consulting and digital transformation services in New Zealand",
-    "url": "https://www.exovance.co.nz",
-    "logo": "https://www.exovance.co.nz/logo.png",
-    "telephone": "+64-00-000-0000",
-    "email": "hello@exovance.co.nz",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "NZ",
-      "addressLocality": "Auckland"
-    },
-    "areaServed": "New Zealand",
-    "priceRange": "$$",
-    "sameAs": [
-      "https://www.linkedin.com/company/exovance"
-    ]
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exovance | Transformation & Delivery Advisory</title>
+<meta name="description" content="Exovance Advisory — senior transformation and delivery leadership for complex, regulated New Zealand organisations. Founded by Chris Robb.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0C0F14;
+    --bg-secondary: #12161E;
+    --bg-card: #181D28;
+    --bg-accent: #1E2433;
+    --text-primary: #E8EAF0;
+    --text-secondary: #9BA3B5;
+    --text-muted: #6B7280;
+    --accent: #C9A44C;
+    --accent-dim: rgba(201, 164, 76, 0.15);
+    --accent-glow: rgba(201, 164, 76, 0.08);
+    --border: rgba(255,255,255,0.06);
+    --border-accent: rgba(201, 164, 76, 0.25);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
   }
-  </script>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(12, 15, 20, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 0.75rem 2.5rem; }
+  .nav-brand {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    padding: 0.5rem 1.5rem !important;
+    border: 1px solid var(--accent) !important;
+    color: var(--accent) !important;
+    transition: background 0.3s, color 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--bg-primary) !important; }
+
+  .mobile-toggle { display: none; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 2.5rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201, 164, 76, 0.04) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(100, 120, 180, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 900px; position: relative; z-index: 1; }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 2rem; height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 640px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(201, 164, 76, 0.25); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 7rem 2.5rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+  }
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    line-height: 1.8;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ─── THE PROBLEM ─── */
+  .problem { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .problem-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    transition: border-color 0.3s;
+  }
+  .problem-card:hover { border-color: var(--border-accent); }
+  .problem-card h3 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+  .problem-card p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    padding: 2.5rem 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    position: relative;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .service-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .service-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.25rem;
+  }
+  .service-card h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .service-examples {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* ─── TRACK RECORD ─── */
+  .track { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .track-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .track-logos {
+    display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center;
+    margin-bottom: 3rem;
+  }
+  .track-logo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  /* ─── ENGAGEMENTS ─── */
+  .engagements-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .engagement {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    align-items: start;
+    transition: border-color 0.3s;
+  }
+  .engagement:hover { border-color: var(--border-accent); }
+  .engagement-org {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .engagement-type {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+  .engagement-content h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .engagement-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  /* ─── HOW WE WORK ─── */
+  .how { background: var(--bg-primary); }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .how-step {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .how-step-num {
+    font-family: var(--mono);
+    font-size: 2rem;
+    color: var(--accent-dim);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .how-step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .how-step p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ─── ABOUT ─── */
+  .about { background: var(--bg-secondary); border-top: 1px solid var(--border); }
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+  .about-creds {
+    display: flex; flex-direction: column; gap: 1.5rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .cred-group h4 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .cred-group p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 7rem 2.5rem;
+    text-align: center;
+    position: relative;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201, 164, 76, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 1; }
+  .cta-inner h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    margin-bottom: 1.5rem;
+  }
+  .cta-inner p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+  .cta-contact {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .cta-contact a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+  .cta-contact a:hover { color: var(--accent); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  footer a { color: var(--text-muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(12,15,20,0.97); padding: 2rem 1.5rem; gap: 1.5rem; border-bottom: 1px solid var(--border); }
+    .nav-links.open { display: flex; }
+    .mobile-toggle { display: block; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .engagement { grid-template-columns: 1fr; gap: 0.75rem; }
+    .problem-grid, .services-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-brand">Exovance</a>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <div class="nav-links">
+    <a href="#problem">The Challenge</a>
+    <a href="#services">Services</a>
+    <a href="#track">Track Record</a>
+    <a href="#how">Approach</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-cta">Start a Conversation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content fade-in">
+    <div class="hero-tag">Transformation & Delivery Advisory</div>
+    <h1>Your transformation<br>is <em>stalling</em>.<br>Let's fix that.</h1>
+    <p class="hero-sub">
+      Exovance provides senior advisory leadership for organisations where transformation has become too complex, too slow, or too disconnected from outcomes. We bring executive-level experience in portfolio governance, delivery operating models, and change leadership — applied directly to your situation.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Diagnostic Call →</a>
+      <a href="#services" class="btn-secondary">How We Help</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="section-inner fade-in">
+    <div class="section-tag">The Challenge</div>
+    <h2 class="section-title">Transformation programmes fail for predictable reasons</h2>
+    <p class="section-lead">
+      Most organisations don't lack ambition or investment. They lack the delivery disciplines, governance clarity, and executive decision-making cadence to turn strategy into outcomes at pace.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <h3>Portfolio Drift</h3>
+        <p>Multiple change programmes running without integrated sequencing, dependency visibility, or clear trade-off decisions. Everything is a priority, so nothing gets delivered well.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Governance Theatre</h3>
+        <p>Steering committees that track activity, not outcomes. Status reports that obscure risk. Decision forums that don't actually decide. The process feels busy, but delivery confidence is low.</p>
+      </div>
+      <div class="problem-card">
+        <h3>BAU vs Change Collision</h3>
+        <p>Transformation competes with operational demands for the same people, budget, and executive attention. Without deliberate capacity management, both suffer.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Change Without Adoption</h3>
+        <p>New platforms go live but nobody's ways of working actually change. The technology is modern; the operating model is still last decade. Benefits remain theoretical.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner fade-in">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Senior advisory for complex transformation</h2>
+    <p class="section-lead">
+      We work alongside your executive team — not as another consulting layer, but as a direct operating partner who brings pattern recognition from 20+ years leading delivery in high-stakes, regulated environments.
+    </p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Transformation Portfolio Leadership</h3>
+        <p>Single-point accountability for your integrated change portfolio. We establish sequencing, make trade-offs explicit, and create the governance cadence that gives your executive team genuine delivery confidence.</p>
+        <div class="service-examples">Portfolio roadmap design · Prioritisation frameworks · Benefits realisation · Executive reporting</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Delivery Operating Model</h3>
+        <p>Assess and redesign how your organisation actually delivers change. From PMO uplift and Agile adoption through to capacity management and vendor strategy — we build the delivery engine, not just the plan.</p>
+        <div class="service-examples">PMO / CoE design · Agile & SAFe adoption · OKR-linked delivery · Delivery function build</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Programme Recovery & Governance</h3>
+        <p>When a critical programme is off-track, we provide rapid diagnostic and intervention — resetting governance, clarifying accountabilities, surfacing hidden risks, and restoring delivery momentum.</p>
+        <div class="service-examples">Programme health assessment · Risk reset · Stakeholder realignment · Delivery rhythm re-establishment</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Change Leadership & Adoption</h3>
+        <p>Transformation only delivers value when people, processes, and behaviours actually change. We design and lead the change strategy that makes adoption stick — from executive alignment through to frontline embedding.</p>
+        <div class="service-examples">Change strategy · Impact assessment · Adoption measurement · Change CoE design</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>Interim & Fractional Executive</h3>
+        <p>When you need senior leadership now — whether to cover a gap, lead a critical phase, or provide the executive horsepower for a transformation you can't resource internally. CIO, Head of Delivery, or Transformation Lead.</p>
+        <div class="service-examples">Interim CIO · Acting Head of Delivery · Fractional transformation executive</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3>AI-Enabled Delivery</h3>
+        <p>Practical application of AI to accelerate delivery productivity — from intelligent portfolio reporting and automated dependency tracking to AI-assisted sprint planning and governance automation. Not theory; tools in use.</p>
+        <div class="service-examples">AI delivery productivity · Governance automation · Responsible AI advisory · Use case identification</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section class="track" id="track">
+  <div class="section-inner fade-in">
+    <div class="section-tag">Track Record</div>
+    <h2 class="section-title">Proven across scale, complexity, and regulation</h2>
+    <p class="section-lead">
+      20+ years of executive accountability for transformation outcomes — not as a consultant observing from the side, but as the person accountable for delivery.
+    </p>
+    <div class="track-stats">
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years Executive Leadership</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$50M+</div>
+        <div class="stat-label">Portfolio Budgets Led</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">300</div>
+        <div class="stat-label">Largest Team Led</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Organisations Transformed</div>
+      </div>
+    </div>
+
+    <div class="section-tag" style="margin-bottom: 1.5rem;">Selected Engagements</div>
+    <div class="engagements-list">
+      <div class="engagement">
+        <div>
+          <div class="engagement-org">Gallagher Insurance</div>
+          <div class="engagement-type">Advisory</div>
+        </div>
+        <div class="engagement-content">
+          <h3>Enterprise Platform Transformation</h3>
+          <p>Led transformation strategy and delivery governance for a major Salesforce FSC programme affecting 800+ brokers nationally. Established Agile delivery model, OKR framework, and vendor evaluation process. Identified 20%+ operational efficiency opportunity through legacy modernisation.</p>
+        </div>
+      </div>
+      <div class="engagement">
+        <div>
+          <div class="engagement-org">Suncorp NZ</div>
+          <div class="engagement-type">EGM Technology</div>
+        </div>
+        <div class="engagement-content">
+          <h3>Enterprise Transformation & SAFe Adoption</h3>
+          <p>Led 250-person technology function through multi-year transformation — introducing SAFe at scale, redesigning portfolio governance, building AI capability, and managing complex M&A technology separation. Board-level accountability for delivery, cybersecurity, and operational risk.</p>
+        </div>
+      </div>
+      <div class="engagement">
+        <div>
+          <div class="engagement-org">AMP Financial Services</div>
+          <div class="engagement-type">CIO</div>
+        </div>
+        <div class="engagement-content">
+          <h3>Delivery Discipline & Digital Transformation</h3>
+          <p>Re-established enterprise PMO and governance from the ground up. Delivered multi-year Salesforce CRM, cloud migration, and legacy decommission programme — including a complex live-platform data migration. Significant cost savings through service insourcing and vendor renegotiation.</p>
+        </div>
+      </div>
+      <div class="engagement">
+        <div>
+          <div class="engagement-org">Auckland Airport</div>
+          <div class="engagement-type">Interim CIO</div>
+        </div>
+        <div class="engagement-content">
+          <h3>Technology Stabilisation & Governance</h3>
+          <p>Full interim CIO accountability during organisational transition — stabilising operations, resetting vendor management, and maintaining programme delivery momentum.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-logos" style="margin-top: 3rem;">
+      <div class="track-logo">Suncorp</div>
+      <div class="track-logo">AMP</div>
+      <div class="track-logo">ANZ Bank</div>
+      <div class="track-logo">Salesforce</div>
+      <div class="track-logo">Gallagher</div>
+      <div class="track-logo">Auckland Airport</div>
+      <div class="track-logo">Genesis Energy</div>
+      <div class="track-logo">IAG NZ</div>
+      <div class="track-logo">NZ Post</div>
+      <div class="track-logo">Zespri</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="how" id="how">
+  <div class="section-inner fade-in">
+    <div class="section-tag">How We Work</div>
+    <h2 class="section-title">Direct, pragmatic, outcome-focused</h2>
+    <p class="section-lead">
+      No discovery phases that run for months. No frameworks for the sake of frameworks. We diagnose fast, intervene where it matters, and build the capability that outlasts the engagement.
+    </p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <h3>Diagnostic</h3>
+        <p>A focused assessment of where your transformation is — the real state, not the status report. We identify the structural issues holding delivery back and the highest-leverage interventions available.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <h3>Intervention Design</h3>
+        <p>A clear, sequenced plan that addresses root causes — not symptoms. We define accountabilities, establish governance cadence, and set the delivery rhythm that creates momentum.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <h3>Hands-On Delivery</h3>
+        <p>We work alongside your teams to implement — running governance, removing blockers, coaching delivery leads, and maintaining pace. This isn't advisory from a distance; it's direct operating partnership.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">04</div>
+        <h3>Capability Embed</h3>
+        <p>The goal is always to build the disciplines and capability that sustain after we step back. We leave operating models, governance frameworks, and capable people — not dependency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner fade-in">
+    <div class="section-tag">About</div>
+    <h2 class="section-title">Chris Robb — Founder</h2>
+    <div class="about-layout">
+      <div class="about-text">
+        <p>
+          Exovance is the advisory practice of Chris Robb, a senior technology and transformation executive with a career built across New Zealand's most demanding organisations.
+        </p>
+        <p>
+          As CIO at AMP Financial Services, EGM Technology at Suncorp New Zealand, Head of Technology at ANZ Bank, and Chief Customer Transformation Officer at Salesforce, Chris has held direct executive accountability for transformation delivery — not from an advisory seat, but as the person reporting to CEOs and presenting to Boards.
+        </p>
+        <p>
+          That's what makes Exovance different. The advice comes from someone who has carried the accountability, managed the trade-offs, and delivered the outcomes in complex, regulated, operationally critical environments. Every recommendation is grounded in what actually works when you're the one on the hook.
+        </p>
+        <p>
+          Chris brings a pragmatic, outcomes-focused leadership style: assess the landscape, prioritise ruthlessly, fix governance, build capability, and move at pace. He's known for operating credibly at Board level while maintaining direct engagement with delivery teams — and for building the disciplines that last after the engagement ends.
+        </p>
+      </div>
+      <div class="about-creds">
+        <div class="cred-group">
+          <h4>Executive Roles</h4>
+          <p>CIO — AMP Financial Services NZ · EGM Technology — Suncorp NZ · Head of Technology — ANZ Bank · Chief Customer Transformation Officer — Salesforce · Head of IT — Genesis Energy · Head of Software Solutions — IAG NZ</p>
+        </div>
+        <div class="cred-group">
+          <h4>Education</h4>
+          <p>Bachelor of Management Studies — University of Waikato</p>
+        </div>
+        <div class="cred-group">
+          <h4>Certifications</h4>
+          <p>PMP · PRINCE2 · SAFe Practitioner · Certified Scrum Master · ITIL Foundation · Darden Business School Executive Programme</p>
+        </div>
+        <div class="cred-group">
+          <h4>Sectors</h4>
+          <p>Financial Services · Insurance · Banking · Energy · Healthcare · Public Sector · Infrastructure</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner fade-in">
+    <h2>Let's talk about what's <em style="color: var(--accent); font-family: var(--serif);">actually</em> holding your transformation back.</h2>
+    <p>
+      A 30-minute diagnostic conversation — no pitch, no proposal. Just an honest assessment of where you are and what might shift the trajectory.
+    </p>
+    <a href="mailto:chris.robb@exovance.co.nz?subject=Exovance%20—%20Transformation%20Advisory%20Enquiry" class="btn-primary">Start a Conversation →</a>
+    <div class="cta-contact">
+      <a href="mailto:chris.robb@exovance.co.nz">chris.robb@exovance.co.nz</a>
+      <a href="tel:+64278073240">+64 27 807 3240</a>
+      <a href="https://www.linkedin.com/in/chris-robbnz" target="_blank" rel="noopener">LinkedIn — Chris Robb</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Exovance Advisory Services</span>
+  <span>Auckland, New Zealand</span>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+</script>
+
 </body>
 </html>
