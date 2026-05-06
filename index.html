@@ -9,18 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-primary: #0C0F14;
-    --bg-secondary: #12161E;
-    --bg-card: #181D28;
-    --bg-accent: #1E2433;
-    --text-primary: #E8EAF0;
-    --text-secondary: #9BA3B5;
+    --bg-primary: #F7F5F0;
+    --bg-secondary: #EDEAE3;
+    --bg-card: #FFFFFF;
+    --bg-accent: #E5E1D8;
+    --text-primary: #1C1F26;
+    --text-secondary: #444B62;
     --text-muted: #6B7280;
-    --accent: #C9A44C;
-    --accent-dim: rgba(201, 164, 76, 0.15);
-    --accent-glow: rgba(201, 164, 76, 0.08);
-    --border: rgba(255,255,255,0.06);
-    --border-accent: rgba(201, 164, 76, 0.25);
+    --accent: #8C6B24;
+    --accent-dim: rgba(140, 107, 36, 0.12);
+    --accent-glow: rgba(140, 107, 36, 0.06);
+    --border: rgba(0, 0, 0, 0.10);
+    --border-accent: rgba(140, 107, 36, 0.30);
     --serif: 'DM Serif Display', Georgia, serif;
     --sans: 'IBM Plex Sans', -apple-system, sans-serif;
     --mono: 'IBM Plex Mono', monospace;
@@ -44,7 +44,7 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 1.25rem 2.5rem;
     display: flex; justify-content: space-between; align-items: center;
-    background: rgba(12, 15, 20, 0.85);
+    background: rgba(247, 245, 240, 0.92);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     transition: padding 0.3s;
@@ -460,7 +460,7 @@
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(12,15,20,0.97); padding: 2rem 1.5rem; gap: 1.5rem; border-bottom: 1px solid var(--border); }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(247,245,240,0.98); padding: 2rem 1.5rem; gap: 1.5rem; border-bottom: 1px solid var(--border); }
     .nav-links.open { display: flex; }
     .mobile-toggle { display: block; }
     section { padding: 4rem 1.5rem; }
