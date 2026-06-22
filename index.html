@@ -839,8 +839,8 @@
     });
   });
 
-  // EmailJS init
-  emailjs.init('qtObmVjKHMgpDE5-6');
+  // EmailJS init (v4 syntax)
+  emailjs.init({ publicKey: 'qtObmVjKHMgpDE5-6' });
 
   // Contact form submission
   const form = document.getElementById('contact-form');
@@ -851,20 +851,20 @@
       btn.textContent = 'Sending…';
       btn.disabled = true;
       try {
-        // Send to contact@exovance.co.nz via Formspree
+        // Send submission to contact@exovance.co.nz via Formspree
         const res = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          // Send autoreply to the submitter via EmailJS
-          await emailjs.send('service_hqvmbqo', 'template_7d2k2r8', {
+          // Fire autoreply to submitter via EmailJS — non-blocking
+          emailjs.send('service_hqvmbqo', 'template_7d2k2r8', {
             from_name: document.getElementById('name').value,
             from_email: document.getElementById('email').value,
             organisation: document.getElementById('org').value || 'Not provided',
             message: document.getElementById('message').value,
-          });
+          }).catch(() => {});
           form.style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
         } else {
