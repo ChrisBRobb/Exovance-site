@@ -7,6 +7,7 @@
 <meta name="description" content="Exovance Advisory — senior transformation and delivery leadership for complex, regulated New Zealand organisations. Founded by Chris Robb.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root {
     --bg-primary: #F7F5F0;
@@ -838,6 +839,9 @@
     });
   });
 
+  // EmailJS init
+  emailjs.init('qtObmVjKHMgpDE5-6');
+
   // Contact form submission
   const form = document.getElementById('contact-form');
   if (form) {
@@ -847,12 +851,20 @@
       btn.textContent = 'Sending…';
       btn.disabled = true;
       try {
+        // Send to contact@exovance.co.nz via Formspree
         const res = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
+          // Send autoreply to the submitter via EmailJS
+          await emailjs.send('service_hqvmbqo', 'template_7d2k2r8', {
+            from_name: document.getElementById('name').value,
+            from_email: document.getElementById('email').value,
+            organisation: document.getElementById('org').value || 'Not provided',
+            message: document.getElementById('message').value,
+          });
           form.style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
         } else {
